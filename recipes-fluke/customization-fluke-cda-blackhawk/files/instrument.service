@@ -1,0 +1,12 @@
+[Unit]
+
+Description=Perform instrument specific customizations and start!
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/doDtreeOverlay
+ExecStart=/usr/sbin/gpib_config
+
+[Install]
+
+WantedBy=multi-user.target
