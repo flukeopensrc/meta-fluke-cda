@@ -9,6 +9,7 @@ KERNEL_DEVICETREE_fluke-cda-richmond = "Richmond_005.dtb Richmond_005_overlay.dt
 KERNEL_DEVICETREE_fluke-cda-triclamp = "Triclamp_soc.dtb Triclamp_soc_overlay.dtb"
 KERNEL_DEVICETREE_fluke-cda-nighthawk = "Nighthawk_soc.dtb Nighthawk_soc_overlay.dtb" 
 KERNEL_DEVICETREE_fluke-cda-caldera = "Caldera_soc.dtb Caldera_soc_overlay.dtb"
+KERNEL_DEVICETREE_fluke-cda-blackhawk = "Blackhawk_soc.dtb Blackhawk_soc_overlay.dtb"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
