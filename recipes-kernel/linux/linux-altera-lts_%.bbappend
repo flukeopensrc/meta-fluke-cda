@@ -1,5 +1,5 @@
 PR = "r1"
-KERNEL_REPO = "git://github.com/fmhess/linux-socfpga.git"
+KERNEL_REPO = "git://github.com/FlukeCorp/linux-socfpga.git"
 LINUX_VERSION = "5.4.13"
 LINUX_VERSION_SUFFIX = "-lts-fluke-cda"
 SRCREV = "${AUTOREV}"
