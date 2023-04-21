@@ -8,7 +8,7 @@ LICENSE = "LGPLv2.1+"
 LIC_FILES_CHKSUM = "file://usbtmc/COPYING.LESSER;md5=3000208d539ec061b899bce1d9ce9404 \
 "
 
-SRC_URI = "git://github.com/FlukeCorp/cia-sw-thirdparty.git;protocol=https;branch=develop"
+SRC_URI = "git://github.com/flukeopensrc/cia-sw-thirdparty.git;protocol=git;branch=develop"
 
 SRCREV ?= "${AUTOREV}"
 

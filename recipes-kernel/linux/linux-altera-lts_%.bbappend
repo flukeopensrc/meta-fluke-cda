@@ -1,8 +1,6 @@
 
 PR = "r2"
-KERNEL_REPO = "git://github.com/fmhess/linux-socfpga.git"
-## Todo: Switch repository once they are synced up
-# KERNEL_REPO = "git://github.com/FlukeCorp/linux-socfpga.git"
+KERNEL_REPO = "git://github.com/flukeopensrc/linux-socfpga.git"
 
 LINUX_VERSION = "5.4.13"
 LINUX_VERSION_SUFFIX = "-lts-fluke-cda"

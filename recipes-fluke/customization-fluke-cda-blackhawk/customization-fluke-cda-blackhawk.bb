@@ -23,7 +23,7 @@ RDEPENDS_${PN} += " \
 	systemd \
 "
 
-#SRC_URI = "git://github.com/ADorchak/sumo-rootfs-extras.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/flukeopensrc/sumo-rootfs-extras.git;protocol=git;branch=master"
 
 SRCREV ?= "${AUTOREV}"
 

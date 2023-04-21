@@ -1,5 +1,5 @@
 PR = "r12"
-SRC_URI = "git://github.com/FlukeCorp/u-boot-fluke-cda.git;protocol=https;branch=v2016.11-fluke-cda"
+SRC_URI = "git://github.com/flukeopensrc/u-boot-fluke-cda.git;protocol=git;branch=v2016.11-fluke-cda"
 SRCREV = "${AUTOREV}"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"

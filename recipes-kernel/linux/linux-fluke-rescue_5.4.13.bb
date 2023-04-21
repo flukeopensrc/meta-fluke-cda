@@ -4,7 +4,7 @@
 
 PR = "r1"
 LINUX_VERSION = "5.4.13"
-KERNEL_REPO = "git://github.com/fmhess/linux-socfpga.git"
+KERNEL_REPO = "git://github.com/flukeopensrc/linux-socfpga.git"
 LINUX_VERSION_SUFFIX = "-lts-fluke-cda"
 SRCREV = "${AUTOREV}"
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
@@ -19,7 +19,7 @@ KERNEL_PACKAGE_NAME = "fluke-rescue-kernel"
 #suppress generating device trees, to avoid bug in kernel-devicetree.bbclass
 #where the device tree files are not put into the KERNEL_PACKAGE_NAME
 #subdir.  This causes them to collide with the device tree files from the
-#default kernel.  This kernel uses the default kernel's device tree anyways, 
+#default kernel.  This kernel uses the default kernel's device tree anyways,
 #so we don't need to generate the device tree in this recipe.
 KERNEL_DEVICETREE = ""
 
