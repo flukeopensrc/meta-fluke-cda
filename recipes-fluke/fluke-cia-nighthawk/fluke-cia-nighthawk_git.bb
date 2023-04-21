@@ -4,7 +4,7 @@ inherit python3native
 
 SUMMARY = "Fluke Nighthawk application"
 DESCRIPTION = "Fluke Nighthawk application"
-HOMEPAGE = "https://https://github.com/FlukeCorp/nighthawk-sw-src"
+HOMEPAGE = "https://github.com/FlukeCorp-emu/nighthawk-sw-src"
 SECTION = "libs"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/extra_files/LICENSE;md5=d7eb911ffc729ee7300764c645b5c5eb"
@@ -27,12 +27,12 @@ RDEPENDS_${PN} += " \
 	python3-core \
 "
 
-SRC_URI = "git://github.com/FlukeCorp/nighthawk-sw-src.git;protocol=https;branch=develop;destsuffix=git/;name=nighthawksrc \
- 	git://github.com/FlukeCorp/cia-sw-utils.git;protocol=https;branch=develop;destsuffix=git/cia/utils;name=ciautils \
+SRC_URI = "git://git@ssh.github.com/FlukeCorp-emu/nighthawk-sw-src.git;protocol=ssh;branch=develop;destsuffix=git/;name=nighthawksrc \
+ 	git://git@ssh.github.com/FlukeCorp-emu/cia-sw-utils.git;protocol=ssh;branch=develop;destsuffix=git/cia/utils;name=ciautils \
 	file://extra_files/LICENSE \
 "
-# 	git://github.com/FlukeCorp/nighthawk-sw-utils.git;protocol=https;branch=develop;destsuffix=git/cia/utils;name=nighthawkutils \
-# 	git://github.com/FlukeCorp/nighthawk-sw-thirdparty.git;protocol=https;branch=fmhess-develop;destsuffix=git/cia/thirdparty;name=nighthawkthirdparty \
+# 	git://git@ssh.github.com/FlukeCorp-emu/nighthawk-sw-utils.git;protocol=ssh;branch=develop;destsuffix=git/cia/utils;name=nighthawkutils \
+# 	git://git@ssh.github.com/FlukeCorp-emu/nighthawk-sw-thirdparty.git;protocol=ssh;branch=fmhess-develop;destsuffix=git/cia/thirdparty;name=nighthawkthirdparty \
 #
 #SRCREV_FORMAT = "nighthawksrc_nighthawkutils_nighthawkthirdparty"
 SRCREV_FORMAT = "nighthawksrc_ciautils"

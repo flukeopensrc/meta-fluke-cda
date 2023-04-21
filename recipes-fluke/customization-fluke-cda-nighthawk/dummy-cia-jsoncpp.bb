@@ -1,6 +1,6 @@
 SUMMARY = "Dummy jsoncpp recipe to generate license package"
 DESCRIPTION = "Dummy jsoncpp recipe."
-AUTHOR = "https://github.com/open-source-parsers/jsoncpp"
+AUTHOR = "git://github.com/open-source-parsers/jsoncpp"
 #SECTION = "base"
 HOMEPAGE = ""
 
@@ -8,7 +8,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://jsoncpp/LICENSE;md5=5d73c165a0f9e86a1342f32d19ec5926 \
 "
 
-SRC_URI = "git://github.com/FlukeCorp/cia-sw-thirdparty.git;protocol=https;branch=develop"
+SRC_URI = "git://github.com/flukeopensrc/cia-sw-thirdparty.git;protocol=git;branch=develop"
 
 SRCREV ?= "${AUTOREV}"
 

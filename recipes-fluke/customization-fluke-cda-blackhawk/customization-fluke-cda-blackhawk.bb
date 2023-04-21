@@ -1,7 +1,7 @@
-SUMMARY = "Fluke CDA customization for Nighthawk"
-DESCRIPTION = "Fluke Caldera application, etc."
+SUMMARY = "Fluke CDA customization for Blackhawk"
+DESCRIPTION = "Blackhawk application, etc."
 AUTHOR = "Fluke"
-#SECTION = "base"
+SECTION = ""
 HOMEPAGE = ""
 
 LICENSE = "Proprietary"
@@ -9,27 +9,19 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=ae270d4118d7e64218492af5b3f3249b"
 
 #PR = "r0"
 
-#libQt5Widgets.so.5, libQt5Gui.so.5, libQt5Core.so.5 used by /home/Caldera/bin/caldera.elf
-#libssl.so.1.0.2, libcrypto.so.1.0.2 used by /home/Caldera/bin/update
+#fontconfig, freetype, libpng, libcrypto (provided by openssl) used by "/home/Blackhawk/bin/update" executable
+#linux-gpib-user used by "/home/Blackhawk/bin/remoteapp" executable
+#qtbase, qtdeclarative, qtquickcontrols2-qmlplugins used by "/home/Blackhawk/bin/fp" executable
 DEPENDS = " \
+	fontconfig \
+	freetype \
+	libpng \
 	openssl \
-	qtbase \
+	linux-gpib-user \
 "
 RDEPENDS_${PN} += " \
 	systemd \
 "
-# DEPENDS = " \
-# 	fontconfig \
-# 	freetype \
-# 	libpng \
-# 	openssl \
-# 	linux-gpib-user \
-# 	qtbase \
-# 	qtdeclarative \
-# "
-# RDEPENDS_${PN} += " \
-# 	qtquickcontrols2-qmlplugins \
-# "
 
 SRC_URI = "git://github.com/flukeopensrc/sumo-rootfs-extras.git;protocol=git;branch=master"
 
@@ -50,6 +42,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 SRC_URI_append = "\
 	file://instrument.service \
 	file://launchApp.service \
+	file://extra_files/ \
 "
 
 do_compile[noexec] = "1"
@@ -62,9 +55,11 @@ do_install () {
 			find -type f -exec sh -c 'install -D -m $(stat -c "%a" "$1") "$1" ${D}/"$1"' sh \{\} \;
 	)
 	(
-		cd ${S}/Caldera/extraFiles/target_root/ &&
+		cd ${S}/Blackhawk/extraFiles/target_root/ &&
 			find -type f -exec sh -c 'install -D -m $(stat -c "%a" "$1") "$1" ${D}/"$1"' sh \{\} \;
 	)
+	#fixup ssh dir permissions
+	chmod 700 ${D}${ROOT_HOME}/.ssh
 	install -d ${D}/home/Test
 	install -d ${D}/home/Proto
 	install -d ${D}/config
@@ -73,8 +68,14 @@ do_install () {
 	install -d ${D}${systemd_system_unitdir}
 	install -d ${D}${sysconfdir}/systemd/system/multi-user.target.wants/
 	install -m 644 ${WORKDIR}/instrument.service ${D}${systemd_system_unitdir}/
+	#launchApp.service is moving to the nighthawk-sw-src repo, so can be removed in the future
 	install -m 644 ${WORKDIR}/launchApp.service ${D}${systemd_system_unitdir}/
+	install -d ${D}${sbindir}
+	install -m 755 ${WORKDIR}/extra_files/doDtreeOverlay ${D}${sbindir}/
 	ln -sr ${D}${systemd_system_unitdir}/instrument.service ${D}${sysconfdir}/systemd/system/multi-user.target.wants/
 	ln -sr ${D}${systemd_system_unitdir}/launchApp.service ${D}${sysconfdir}/systemd/system/multi-user.target.wants/
-}
 
+	#auto-load kernel modules needed for serial gadget
+	install -d ${D}${sysconfdir}/modules-load.d
+	install -m 644 ${WORKDIR}/extra_files/fluke_gadgets.conf ${D}${sysconfdir}/modules-load.d/
+}

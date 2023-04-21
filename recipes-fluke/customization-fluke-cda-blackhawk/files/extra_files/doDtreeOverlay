@@ -1,0 +1,10 @@
+#!/bin/sh
+export PRODUCT_NAME=Blackhawk
+
+if [ ! -d "/config" ]; then
+    mkdir /config
+fi
+mount -t configfs configfs /config
+mkdir /config/device-tree/overlays/$PRODUCT_NAME
+cat /boot/${PRODUCT_NAME}_soc_overlay.dtb > /config/device-tree/overlays/$PRODUCT_NAME/dtbo
+
