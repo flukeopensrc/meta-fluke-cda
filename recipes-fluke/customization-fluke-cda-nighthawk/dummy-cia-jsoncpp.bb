@@ -4,6 +4,8 @@ AUTHOR = "git://github.com/open-source-parsers/jsoncpp"
 #SECTION = "base"
 HOMEPAGE = ""
 
+PACKAGES = "${PN}"
+
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://jsoncpp/LICENSE;md5=5d73c165a0f9e86a1342f32d19ec5926 \
 "
