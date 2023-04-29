@@ -3,13 +3,14 @@
 #require recipes-images/angstrom/console-base-image.bb
 require recipes-images/angstrom/angstrom-image.bb
 
-DEPENDS += "lighttpd \
-	iproute2 \
-	linux-gpib-user \
-	linux-gpib-kernel \
-    ttf-roboto \
+DEPENDS += " \
     fluke-drivers \
+    iproute2 \
     libgpiod \
+    lighttpd \
+    linux-gpib-kernel \
+    linux-gpib-user \
+    ttf-roboto \
 "
 
 DEPENDS_append_fluke-cda-nighthawk = " \
@@ -23,23 +24,7 @@ DEPENDS_append_fluke-cda-vanquish = " \
 "
 
 IMAGE_INSTALL_append = " \
-	qtbase qtbase-tools qtbase-plugins freetype fontconfig fontconfig-utils \
-	ttf-roboto \
-	libusb-compat \
-	mtd-utils \
-	tslib tslib-tests \
-	avahi-daemon avahi-autoipd \
-	php-cli php-cgi php-fpm php-phar php lighttpd-module-fastcgi \
-	rt-tests \
-	util-linux \
-	lighttpd \
-	iproute2 \
-	linux-gpib-user \
-	kernel-module-fluke-gpib \
-	kernel-module-fmh-gpib \
-	kernel-module-gpio-fluke \
-	libgpiod \
-	libgpiod-tools \
+	packagegroup-fluke-cda-common-console \
 "
 IMAGE_INSTALL_append_fluke-cda-caldera = " \
 	kernel-module-fluke-keypad \
@@ -103,7 +88,7 @@ fluke_console_image_postprocess_common() {
 	# turn off logging to disk
 	echo Storage=volatile >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/journald.conf
 	echo ForwardToSyslog=no >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/journald.conf
-	
+
 	#Prevent front panel display from being allocated as a virtual terminal by logind
 	echo NAutoVTs=0 >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/logind.conf
 	echo ReserveVT=0 >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/logind.conf

@@ -1,5 +1,9 @@
 
 require recipes-images/angstrom/fluke-console-image.bb
+inherit populate_sdk_qt5
+
+TOOLCHAIN_HOST_TASK_append = " nativesdk-packagegroup-fluke-cda-toolchain-host"
+TOOLCHAIN_TARGET_TASK_append = " packagegroup-fluke-cda-common"
 
 DEPENDS_append_fluke-cda-nighthawk = " \
 	noto-sans-hinted \
@@ -12,13 +16,10 @@ DEPENDS_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
 	fluke-run-once \
 "
-
+# TODO: remove debug packagegroup once we start using debug image
 IMAGE_INSTALL_append = " \
-	fbgrab \
-	sqlite3 \
-	libsqlite3-dev \
-	x11vnc \
-	python3 \
+	packagegroup-fluke-cda-common \
+	packagegroup-fluke-cda-common-debug \
 "
 
 IMAGE_INSTALL_append_fluke-cda-nighthawk = " \
