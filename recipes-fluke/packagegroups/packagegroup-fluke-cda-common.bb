@@ -5,18 +5,26 @@ LICENSE = "MIT"
 inherit packagegroup
 
 PACKAGES = " \
-    ${PN}-base \
+    ${PN}-image \
+    ${PN}-debug \
     ${PN}-console \
     ${PN}-sdk \
-    ${PN}-debug \
     ${PN} \
 "
 
+# Everything listed here will be included in SDK
 RDEPENDS_${PN} = "\
-    ${PN}-base \
+    ${PN}-image \
+    ${PN}-debug \
+    ${PN}-sdk \
 "
-# Additional packages to the fluke-full image
-RDEPENDS_${PN}-base = " \
+# Additional packages to install in fluke-full image
+RDEPENDS_${PN}-image = " \
+"
+
+# Additional packages to install in Debug Image
+RDEPENDS_${PN}-debug = " \
+    googletest \
 "
 
 # Packages common to the fluke-console image
@@ -51,10 +59,6 @@ RDEPENDS_${PN}-sdk = " \
     googletest-staticdev \
     libeigen-dev \
     libgpiod-dev \
-"
-# Debug Image
-RDEPENDS_${PN}-debug = " \
-    googletest \
 "
 
 # TODO: move to seperate product packagegroup
