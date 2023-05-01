@@ -5,7 +5,7 @@ LICENSE = "MIT"
 inherit packagegroup
 
 PACKAGES = " \
-    ${PN}-image \
+    ${PN}-full \
     ${PN}-debug \
     ${PN}-console \
     ${PN}-sdk \
@@ -19,16 +19,16 @@ RDEPENDS_${PN} = "\
     ${PN}-debug \
     ${PN}-sdk \
 "
-# Additional packages to install in fluke-full image
+# Packages to install in fluke-full image
 RDEPENDS_${PN}-full = " \
 "
 
-# Additional packages to install in Debug Image
+# Packages to install in Debug Image
 RDEPENDS_${PN}-debug = " \
     googletest \
 "
 
-# Packages common to the fluke-console image
+# Packages to install in fluke-console image
 RDEPENDS_${PN}-console = " \
     avahi-daemon avahi-autoipd \
     fontconfig \
@@ -50,20 +50,13 @@ RDEPENDS_${PN}-console = " \
     util-linux \
 "
 
-# Target toolchain
+# Packages to include in the SDK only
 RDEPENDS_${PN}-sdk = " \
-    freetype-dev \
     googletest-dev \
     googletest-staticdev \
-    libeigen-dev \
     libgpiod-dev \
 "
 
-# TODO: move to seperate product packagegroup
-RDEPENDS_${PN}_append_fluke-cda-vanquish = " \
-    libnrp \
-    librsnrpz \
-"
 RRECOMMENDS_${PN}_mingw32 = "\
     libssp \
     libssp-dev \
