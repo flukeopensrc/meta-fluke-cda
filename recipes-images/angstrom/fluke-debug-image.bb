@@ -10,3 +10,5 @@ EXTRA_IMAGE_FEATURES = " \
 IMAGE_INSTALL_append = " packagegroup-fluke-cda-common-debug "
 
 IMAGE_INSTALL_append_fluke-cda-nighthawk = " packagegroup-fluke-nighthawk-debug "
+
+export IMAGE_BASENAME = "fluke-debug-image"
