@@ -21,18 +21,15 @@ DEPENDS_append_fluke-cda-vanquish = " \
 "
 
 # Install packages and also add to SDK
-IMAGE_INSTALL_append = " \
-    packagegroup-fluke-cda-common-console \
-"
+IMAGE_INSTALL_append = " packagegroup-fluke-cda-common-console "
 IMAGE_INSTALL_append_fluke-cda-caldera = " \
 	kernel-module-fluke-keypad \
 	kernel-module-altera-inttimer \
 "
-
+# kernel-module can only be included via IMAGE_INSTALL
 IMAGE_INSTALL_append_fluke-cda-nighthawk = " \
-	e2fsprogs \
-	e2fsprogs-resize2fs \
-	kernel-module-altera-inttimer \
+    packagegroup-fluke-nighthawk-console \
+    kernel-module-altera-inttimer \
 "
 
 IMAGE_INSTALL_append_fluke-cda-triclamp = " \

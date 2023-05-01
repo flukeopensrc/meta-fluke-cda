@@ -6,32 +6,20 @@ TOOLCHAIN_HOST_TASK_append = " nativesdk-packagegroup-fluke-cda-toolchain-host"
 TOOLCHAIN_TARGET_TASK_append = " packagegroup-fluke-cda-common"
 
 DEPENDS_append_fluke-cda-nighthawk = " \
-	noto-sans-hinted \
-	noto-sans-cjk-light \
-	customization-${MACHINE} \
-	fluke-run-once \
-	rescue-fluke-cda-bootfiles \
+    noto-sans-hinted \
 "
 
 DEPENDS_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
 	fluke-run-once \
 "
-# TODO: remove debug packagegroup once we start using debug image
-IMAGE_INSTALL_append = " \
-    packagegroup-fluke-cda-common-full \
-    packagegroup-fluke-cda-common-debug \
-"
+IMAGE_INSTALL_append = " packagegroup-fluke-cda-common-full "
 
-IMAGE_INSTALL_append_fluke-cda-nighthawk = " \
-	noto-sans-hinted-light \
-	noto-sans-cjk-light \
-	customization-${MACHINE} \
-	kernel-devicetree \
-	fluke-run-once \
-	fluke-cia-nighthawk \
-	rescue-fluke-cda-bootfiles \
-"
+RDEPENDS_append_fluke-cda-nighthawk = " packagegroup-fluke-nighthawk-install-only "
+
+# Customization package can only be included via IMAGE_INSTALL
+IMAGE_INSTALL_fluke-cda-nighthawk += " customization-${MACHINE} "
+
 IMAGE_INSTALL_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
 	kernel-devicetree \
