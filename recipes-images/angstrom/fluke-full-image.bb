@@ -1,35 +1,29 @@
 
 require recipes-images/angstrom/fluke-console-image.bb
+inherit populate_sdk_qt5
 
+TOOLCHAIN_HOST_TASK_append = " nativesdk-packagegroup-fluke-cda-toolchain-host"
+TOOLCHAIN_TARGET_TASK_append = " packagegroup-fluke-cda-common"
+
+# Depends doesn't do anything so can we remove?
 DEPENDS_append_fluke-cda-nighthawk = " \
-	noto-sans-hinted \
-	noto-sans-cjk-light \
-	customization-${MACHINE} \
-	fluke-run-once \
-	rescue-fluke-cda-bootfiles \
+    noto-sans-hinted \
 "
+
 DEPENDS_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
 	fluke-run-once \
 "
 
-IMAGE_INSTALL_append = " \
-	fbgrab \
-	sqlite3 \
-	libsqlite3-dev \
-	x11vnc \
-	python3 \
-"
+
+IMAGE_INSTALL_append = " packagegroup-fluke-cda-common-full "
 
 IMAGE_INSTALL_append_fluke-cda-nighthawk = " \
-	noto-sans-hinted-light \
-	noto-sans-cjk-light \
-	customization-${MACHINE} \
-	kernel-devicetree \
-	fluke-run-once \
-	fluke-cia-nighthawk \
-	rescue-fluke-cda-bootfiles \
+    customization-${MACHINE} \
+    packagegroup-fluke-nighthawk-full \
+    packagegroup-fluke-nighthawk-install-only \
 "
+
 IMAGE_INSTALL_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
 	kernel-devicetree \
@@ -41,7 +35,7 @@ export IMAGE_BASENAME = "fluke-full-image"
 IMAGE_FSTYPES = " ubi"
 IMAGE_FSTYPES_append_fluke-cda-nighthawk = " wic.gz"
 IMAGE_FSTYPES_remove_fluke-cda-nighthawk = "ubi"
-IMAGE_FSTYPES_remove = "tar.xz"
+# IMAGE_FSTYPES_remove = "tar.xz"
 UBI_VOLNAME = "root-fs"
 
 fluke_full_image_postprocess_common() {

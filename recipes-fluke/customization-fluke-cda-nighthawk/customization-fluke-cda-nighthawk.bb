@@ -7,32 +7,8 @@ HOMEPAGE = ""
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ae270d4118d7e64218492af5b3f3249b"
 
-#PR = "r0"
 
-#fontconfig, freetype, libpng, libcrypto (provided by openssl) used by "/home/Nighthawk/bin/update" executable
-#linux-gpib-user used by "/home/Nighthawk/bin/remoteapp" executable
-#qtbase, qtdeclarative, qtquickcontrols2-qmlplugins used by "/home/Nighthawk/bin/fp" executable
-DEPENDS = " \
-"
-RDEPENDS_${PN} += " \
-	fontconfig \
-	freetype \
-	libpng \
-	openssl \
-	linux-gpib-user \
-	qtbase \
-	qtdeclarative \
-	qtquickcontrols2-qmlplugins \
-	systemd \
-	libeigen-lic \
-"
 
-#add dummy packages for libraries provided via cia-sw-thirdparty, so that their license packages get installed
-RDEPENDS_${PN} += " \
-	dummy-cia-usbtmc-lic \
-	dummy-cia-jsoncpp-lic \
-	dummy-cia-jsonrpccpp-lic \
-"
 
 SRC_URI = "git://github.com/flukeopensrc/sumo-rootfs-extras.git;protocol=git;branch=master"
 

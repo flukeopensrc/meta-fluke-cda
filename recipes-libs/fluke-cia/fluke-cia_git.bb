@@ -10,12 +10,13 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/extra_files/LICENSE;md5=fce4b53e0185d2bc7e
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-DEPENDS += "freetype \
-	libpng \
-	openssl \
-	fontconfig \
-	linux-gpib-user \
-	sqlite3 \
+DEPENDS += " \
+    fontconfig \
+    freetype \
+    libpng \
+    linux-gpib-user \
+    openssl \
+    sqlite3 \
 "
 
 SRC_URI = "git://git@ssh.github.com/FlukeCorp-emu/cia-sw-src.git;protocol=ssh;branch=develop;destsuffix=git/cia/src;name=ciasrc \

@@ -3,17 +3,22 @@
 #require recipes-images/angstrom/console-base-image.bb
 require recipes-images/angstrom/angstrom-image.bb
 
-DEPENDS += "lighttpd \
-	iproute2 \
-	linux-gpib-user \
-	linux-gpib-kernel \
-    ttf-roboto \
+IMAGE_INSTALL_append = " \
+    avahi-autoipd \
+    avahi-daemon \
     fluke-drivers \
-    libgpiod \
-"
-
-DEPENDS_append_fluke-cda-nighthawk = " \
-	e2fsprogs \
+    fontconfig-utils \
+    iproute2 \
+    kernel-module-fluke-gpib \
+    kernel-module-fmh-gpib \
+    kernel-module-gpio-fluke \
+    lighttpd \
+    lighttpd-module-fastcgi \
+    linux-gpib-kernel \
+    mtd-utils \
+    php-cli php-cgi php-fpm php-phar php \
+    rt-tests \
+    ttf-roboto \
 "
 
 DEPENDS_append_fluke-cda-vanquish = " \
@@ -22,34 +27,17 @@ DEPENDS_append_fluke-cda-vanquish = " \
 	nrpzmodule \
 "
 
-IMAGE_INSTALL_append = " \
-	qtbase qtbase-tools qtbase-plugins freetype fontconfig fontconfig-utils \
-	ttf-roboto \
-	libusb-compat \
-	mtd-utils \
-	tslib tslib-tests \
-	avahi-daemon avahi-autoipd \
-	php-cli php-cgi php-fpm php-phar php lighttpd-module-fastcgi \
-	rt-tests \
-	util-linux \
-	lighttpd \
-	iproute2 \
-	linux-gpib-user \
-	kernel-module-fluke-gpib \
-	kernel-module-fmh-gpib \
-	kernel-module-gpio-fluke \
-	libgpiod \
-	libgpiod-tools \
-"
+# Install packages and also add to SDK
+IMAGE_INSTALL_append = " packagegroup-fluke-cda-common-console "
 IMAGE_INSTALL_append_fluke-cda-caldera = " \
 	kernel-module-fluke-keypad \
 	kernel-module-altera-inttimer \
 "
-
+# kernel-module can only be included via IMAGE_INSTALL
 IMAGE_INSTALL_append_fluke-cda-nighthawk = " \
-	e2fsprogs \
-	e2fsprogs-resize2fs \
-	kernel-module-altera-inttimer \
+    e2fsprogs-resize2fs \
+    packagegroup-fluke-nighthawk-console \
+    kernel-module-altera-inttimer \
 "
 
 IMAGE_INSTALL_append_fluke-cda-triclamp = " \
@@ -68,8 +56,6 @@ IMAGE_INSTALL_append_fluke-cda-vanquish = " \
 
 #IMAGE_INSTALL += "fcgi \
 #"
-
-#EXTRA_IMAGE_FEATURES = "dbg-pkgs debug-tweaks "
 
 #IMAGE_INSTALL := "${@oe_filter_out('gcc', '${IMAGE_INSTALL}', d)}"
 
@@ -103,7 +89,7 @@ fluke_console_image_postprocess_common() {
 	# turn off logging to disk
 	echo Storage=volatile >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/journald.conf
 	echo ForwardToSyslog=no >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/journald.conf
-	
+
 	#Prevent front panel display from being allocated as a virtual terminal by logind
 	echo NAutoVTs=0 >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/logind.conf
 	echo ReserveVT=0 >> ${IMAGE_ROOTFS}${sysconfdir}/systemd/logind.conf

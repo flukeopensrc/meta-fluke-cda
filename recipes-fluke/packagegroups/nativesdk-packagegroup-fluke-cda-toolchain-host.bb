@@ -1,5 +1,5 @@
 
-DESCRIPTION = "Extra host packages for Fluke CDA version of meta-toochain-qt5"
+DESCRIPTION = "Common host tools Fluke CDA version of meta-toochain-qt5"
 LICENSE = "MIT"
 
 inherit packagegroup nativesdk

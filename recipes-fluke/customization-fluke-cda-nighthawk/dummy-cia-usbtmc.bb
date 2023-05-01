@@ -4,6 +4,8 @@ AUTHOR = "Tektronix"
 #SECTION = "base"
 HOMEPAGE = ""
 
+PACKAGES = "${PN}"
+
 LICENSE = "LGPLv2.1+"
 LIC_FILES_CHKSUM = "file://usbtmc/COPYING.LESSER;md5=3000208d539ec061b899bce1d9ce9404 \
 "
@@ -29,3 +31,4 @@ do_install () {
 }
 
 RPROVIDES_${PN} += "${PN}-lic"
+
