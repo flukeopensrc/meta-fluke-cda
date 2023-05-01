@@ -6,12 +6,25 @@ require recipes-images/angstrom/angstrom-image.bb
 
 # Packages to install but not include in SDK
 RDEPENDS += " \
+    avahi-autoipd \
+    avahi-daemon \
     fluke-drivers \
-    linux-gpib-kernel \
-    ttf-roboto \
+    fontconfig-utils \
+    iproute2 \
     kernel-module-fluke-gpib \
     kernel-module-fmh-gpib \
     kernel-module-gpio-fluke \
+    lighttpd \
+    lighttpd-module-fastcgi \
+    linux-gpib-kernel \
+    mtd-utils \
+    php-cli php-cgi php-fpm php-phar php \
+    rt-tests \
+    ttf-roboto \
+"
+
+RDEPENDS_append_fluke-cda-nighthawk = " \
+    e2fsprogs-resize2fs \
 "
 
 DEPENDS_append_fluke-cda-vanquish = " \

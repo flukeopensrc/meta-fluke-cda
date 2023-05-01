@@ -29,6 +29,7 @@ RDEPENDS_${PN}-install-only = " \
     dummy-cia-usbtmc-lic \
     fluke-cia-nighthawk \
     fluke-run-once \
+    kernel-devicetree \
     noto-sans-cjk-light \
     noto-sans-hinted-light \
     rescue-fluke-cda-bootfiles \
@@ -40,7 +41,6 @@ RDEPENDS_${PN}-install-only = " \
 
 # Packages to be install on the image and sdk
 RDEPENDS_${PN}-full = " \
-    kernel-devicetree \
     libeigen-lic \
     libpng \
     openssl \
@@ -56,7 +56,6 @@ RDEPENDS_${PN}-debug = " \
 # Packages to install in fluke-console image
 RDEPENDS_${PN}-console = " \
     e2fsprogs \
-    e2fsprogs-resize2fs \
 "
 
 # Packages to include in the SDK only
