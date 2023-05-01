@@ -5,6 +5,7 @@ inherit populate_sdk_qt5
 TOOLCHAIN_HOST_TASK_append = " nativesdk-packagegroup-fluke-cda-toolchain-host"
 TOOLCHAIN_TARGET_TASK_append = " packagegroup-fluke-cda-common"
 
+# Depends doesn't do anything so can we remove?
 DEPENDS_append_fluke-cda-nighthawk = " \
     noto-sans-hinted \
 "
@@ -13,12 +14,15 @@ DEPENDS_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
 	fluke-run-once \
 "
+
+
 IMAGE_INSTALL_append = " packagegroup-fluke-cda-common-full "
 
-RDEPENDS_append_fluke-cda-nighthawk = " packagegroup-fluke-nighthawk-install-only "
-
-# Customization package can only be included via IMAGE_INSTALL
-IMAGE_INSTALL_fluke-cda-nighthawk += " customization-${MACHINE} "
+IMAGE_INSTALL_append_fluke-cda-nighthawk = " \
+    customization-${MACHINE} \
+    packagegroup-fluke-nighthawk-full \
+    packagegroup-fluke-nighthawk-install-only \
+"
 
 IMAGE_INSTALL_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
