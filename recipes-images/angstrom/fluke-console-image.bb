@@ -3,9 +3,7 @@
 #require recipes-images/angstrom/console-base-image.bb
 require recipes-images/angstrom/angstrom-image.bb
 
-
-# Packages to install but not include in SDK
-RDEPENDS += " \
+IMAGE_INSTALL_append = " \
     avahi-autoipd \
     avahi-daemon \
     fluke-drivers \
@@ -23,10 +21,6 @@ RDEPENDS += " \
     ttf-roboto \
 "
 
-RDEPENDS_append_fluke-cda-nighthawk = " \
-    e2fsprogs-resize2fs \
-"
-
 DEPENDS_append_fluke-cda-vanquish = " \
 	libnrp \
 	librsnrpz \
@@ -41,6 +35,7 @@ IMAGE_INSTALL_append_fluke-cda-caldera = " \
 "
 # kernel-module can only be included via IMAGE_INSTALL
 IMAGE_INSTALL_append_fluke-cda-nighthawk = " \
+    e2fsprogs-resize2fs \
     packagegroup-fluke-nighthawk-console \
     kernel-module-altera-inttimer \
 "
