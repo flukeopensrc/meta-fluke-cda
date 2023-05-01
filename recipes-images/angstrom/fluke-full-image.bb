@@ -12,14 +12,15 @@ DEPENDS_append_fluke-cda-nighthawk = " \
 	fluke-run-once \
 	rescue-fluke-cda-bootfiles \
 "
+
 DEPENDS_append_fluke-cda-caldera = " \
 	customization-${MACHINE} \
 	fluke-run-once \
 "
 # TODO: remove debug packagegroup once we start using debug image
 IMAGE_INSTALL_append = " \
-	packagegroup-fluke-cda-common \
-	packagegroup-fluke-cda-common-debug \
+    packagegroup-fluke-cda-common-full \
+    packagegroup-fluke-cda-common-debug \
 "
 
 IMAGE_INSTALL_append_fluke-cda-nighthawk = " \

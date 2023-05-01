@@ -14,12 +14,13 @@ PACKAGES = " \
 
 # Everything listed here will be included in SDK
 RDEPENDS_${PN} = "\
-    ${PN}-image \
+    ${PN}-full \
+    ${PN}-console \
     ${PN}-debug \
     ${PN}-sdk \
 "
 # Additional packages to install in fluke-full image
-RDEPENDS_${PN}-image = " \
+RDEPENDS_${PN}-full = " \
 "
 
 # Additional packages to install in Debug Image
@@ -34,9 +35,6 @@ RDEPENDS_${PN}-console = " \
     fontconfig-utils \
     freetype \
     iproute2 \
-    kernel-module-fluke-gpib \
-    kernel-module-fmh-gpib \
-    kernel-module-gpio-fluke \
     libgpiod \
     libgpiod-tools \
     libusb-compat \

@@ -3,18 +3,15 @@
 #require recipes-images/angstrom/console-base-image.bb
 require recipes-images/angstrom/angstrom-image.bb
 
-DEPENDS += " \
-    fluke-drivers \
-    iproute2 \
-    libgpiod \
-    lighttpd \
-    linux-gpib-kernel \
-    linux-gpib-user \
-    ttf-roboto \
-"
 
-DEPENDS_append_fluke-cda-nighthawk = " \
-	e2fsprogs \
+# Packages to install but not include in SDK
+RDEPENDS += " \
+    fluke-drivers \
+    linux-gpib-kernel \
+    ttf-roboto \
+    kernel-module-fluke-gpib \
+    kernel-module-fmh-gpib \
+    kernel-module-gpio-fluke \
 "
 
 DEPENDS_append_fluke-cda-vanquish = " \
@@ -23,8 +20,9 @@ DEPENDS_append_fluke-cda-vanquish = " \
 	nrpzmodule \
 "
 
+# Install packages and also add to SDK
 IMAGE_INSTALL_append = " \
-	packagegroup-fluke-cda-common-console \
+    packagegroup-fluke-cda-common-console \
 "
 IMAGE_INSTALL_append_fluke-cda-caldera = " \
 	kernel-module-fluke-keypad \
@@ -53,8 +51,6 @@ IMAGE_INSTALL_append_fluke-cda-vanquish = " \
 
 #IMAGE_INSTALL += "fcgi \
 #"
-
-#EXTRA_IMAGE_FEATURES = "dbg-pkgs debug-tweaks "
 
 #IMAGE_INSTALL := "${@oe_filter_out('gcc', '${IMAGE_INSTALL}', d)}"
 
