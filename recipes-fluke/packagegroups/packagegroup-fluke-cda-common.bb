@@ -30,23 +30,14 @@ RDEPENDS_${PN}-debug = " \
 
 # Packages to install in fluke-console image
 RDEPENDS_${PN}-console = " \
-    avahi-daemon avahi-autoipd \
     fontconfig \
-    fontconfig-utils \
     freetype \
-    iproute2 \
     libgpiod \
     libgpiod-tools \
     libusb-compat \
-    lighttpd \
-    lighttpd-module-fastcgi \
     linux-gpib-user \
-    mtd-utils \
-    php-cli php-cgi php-fpm php-phar php \
     qtbase qtbase-tools qtbase-plugins \
-    rt-tests \
     tslib tslib-tests \
-    ttf-roboto \
     util-linux \
 "
 
