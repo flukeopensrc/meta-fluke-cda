@@ -7,13 +7,15 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 inherit module
 
-#SRCREV = "${AUTOREV}"
 SRCREV = "1914"
 PV = "svnr${SRCREV}"
 PR = "r0"
 
-SRC_URI = "svn://svn.code.sf.net/p/linux-gpib/code/;module=trunk/linux-gpib-kernel;protocol=https \
-"
+# The `make-install-depmod.patch` is really just for docker builds, otherwise
+# depmod will pull the host(the container) kernel version instead of yocto build.
+# Even so it doesn't look like we even need the output of depmod.
+SRC_URI = "svn://svn.code.sf.net/p/linux-gpib/code/;module=trunk/linux-gpib-kernel;protocol=https;rev=${SRCREV} \
+file://make-install-depmod.patch"
 
 S = "${WORKDIR}/trunk/linux-gpib-kernel"
 
@@ -22,7 +24,7 @@ S = "${WORKDIR}/trunk/linux-gpib-kernel"
 
 RPROVIDES_${PN} += "linux-gpib"
 
-EXTRA_OEMAKE += "LINUX_SRCDIR=${STAGING_KERNEL_DIR}"
+EXTRA_OEMAKE += "LINUX_SRCDIR=${STAGING_KERNEL_DIR} BASE_PATH=${D} KERNEL_VERSION=${KERNEL_VERSION}"
 
 MODULES_INSTALL_TARGET = "install"
 MODULES_MODULE_SYMVERS_LOCATION = "drivers/gpib/"
