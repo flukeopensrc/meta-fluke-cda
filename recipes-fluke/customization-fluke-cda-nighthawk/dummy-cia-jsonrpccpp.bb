@@ -4,6 +4,8 @@ AUTHOR = "git://github.com/cinemast/libjson-rpc-cpp"
 #SECTION = "base"
 HOMEPAGE = ""
 
+PACKAGES = "${PN}"
+
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://jsonrpccpp/LICENSE.txt;md5=4e728c5b36018f6c383b4b9efd9c8840 \
 "
